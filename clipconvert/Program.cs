@@ -31,6 +31,7 @@ namespace clipconvert {
 			clipboardData = ReplaceTag(clipboardData, "i", "I");
 			clipboardData = ReplaceTag(clipboardData, "em", "I");
 			clipboardData = ReplaceTag(clipboardData, "u", "U");
+			clipboardData = ReplaceTag(clipboardData, "s", "S");
 
 			// Replace <br> by [INSERTNEWLINEHERE]
 			clipboardData = brRegex.Replace(clipboardData, "[INSERTNEWLINEHERE]");
