@@ -7,11 +7,11 @@ using System.Windows.Automation.Peers;
 
 namespace clipconvert {
 	class MainClass {
-		private static readonly Regex anchorRegex = new Regex(@"<a [^<>]*href=[""']([^""'>]*)[""'][^<>]*>(.*?)</a>", RegexOptions.Multiline | RegexOptions.IgnoreCase);
-		private static readonly Regex colorRegex = new Regex(@"<span [^<>]*style=[""']color:([^""'>]*?);?[""'][^<>]*>(.*?)</span>", RegexOptions.Multiline | RegexOptions.IgnoreCase);
-		private static readonly Regex tagRegex = new Regex(@"<[^<>]+>", RegexOptions.Multiline);
-		private static readonly Regex whitespaceRegex = new Regex(@"\s+", RegexOptions.Multiline);
-		private static readonly Regex brRegex = new Regex(@"<br[^<>]*>", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+		private static readonly Regex anchorRegex = new Regex(@"<a [^<>]*href=[""']([^""'>]*)[""'][^<>]*>(.*?)</a>", RegexOptions.Singleline | RegexOptions.IgnoreCase);
+		private static readonly Regex colorRegex = new Regex(@"<span [^<>]*style=[""']color:([^""'>]*?);?[""'][^<>]*>(.*?)</span>", RegexOptions.Singleline | RegexOptions.IgnoreCase);
+		private static readonly Regex tagRegex = new Regex(@"<[^<>]+>", RegexOptions.Singleline);
+		private static readonly Regex whitespaceRegex = new Regex(@"\s+", RegexOptions.Singleline);
+		private static readonly Regex brRegex = new Regex(@"<br[^<>]*>|<blockquote[^<>]*>|</blockquote[^<>]*>", RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
 		[STAThread]
 		public static int Main(string[] args) {
@@ -75,7 +75,7 @@ namespace clipconvert {
 				string caption = match.Groups[1].Value;
 
 				return string.Format("[{0}]{1}[/{0}]", bbcodeTagName, caption);
-			}, RegexOptions.Multiline | RegexOptions.IgnoreCase);
+			}, RegexOptions.Singleline | RegexOptions.IgnoreCase);
 		}
 	}
 }
